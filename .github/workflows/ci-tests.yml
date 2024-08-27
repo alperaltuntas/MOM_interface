@@ -1,0 +1,27 @@
+name: MOM_interface CI
+
+on:
+  push:
+    branches: [ "main", "ci" ]
+  pull_request:
+    branches: [ "main", "ci" ]
+
+jobs:
+  ci_tests:
+    name: MOM_interface CI tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
+    
+      # clone CESM
+      - uses: actions/checkout@v4
+        with:
+          repository: ESCOMP/CESM
+          ref: cesm3_0_alpha03a
+          #submodules: recursive
+
+      # Run git-fleximod
+      - name: run git-fleximod
+        run: |
+          ./bin/git-fleximod update
