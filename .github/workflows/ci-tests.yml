@@ -14,6 +14,18 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
+      - name: Install Ubuntu linux packages
+        run: |
+        echo "::group::Install linux packages"
+        sudo apt-get update
+        sudo apt-get install netcdf-bin
+        sudo apt-get install libnetcdf-dev
+        sudo apt-get install libnetcdff-dev
+        sudo apt-get install openmpi-bin
+        sudo apt-get install libopenmpi-dev
+        sudo apt-get install linux-tools-common
+        echo "::endgroup::"
+
     
       # clone CESM
       - uses: actions/checkout@v4
@@ -22,7 +34,11 @@ jobs:
           ref: cesm3_0_alpha03a
           #submodules: recursive
 
-      # Run git-fleximod
-      - name: run git-fleximod
+      - name: Run git-fleximod
         run: |
           ./bin/git-fleximod update
+      
+      - name: Build standalone mom6
+        run: |
+          cd components/mom/standalone/build
+          ./build_examples-ncar.sh --compiler gnu
