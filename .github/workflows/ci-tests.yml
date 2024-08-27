@@ -14,14 +14,14 @@ jobs:
       run:
         shell: bash -el {0}
     
-      # clone CESM
-      - uses: actions/checkout@v4
-        with:
-          repository: ESCOMP/CESM
-          ref: cesm3_0_alpha03a
-          #submodules: recursive
+    # clone CESM
+    - uses: actions/checkout@v4
+      with:
+        repository: ESCOMP/CESM
+        ref: cesm3_0_alpha03a
+        #submodules: recursive
 
-      # Run git-fleximod
-      - name: run git-fleximod
-        run: |
-          ./bin/git-fleximod update
+    # Run git-fleximod
+    - name: run git-fleximod
+      run: |
+        ./bin/git-fleximod update
