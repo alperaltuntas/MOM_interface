@@ -41,5 +41,6 @@ jobs:
       - name: Build standalone mom6
         run: |
           cd components/mom/standalone/build
-          git checkout {{github.ref}}
+          git remote add altuntas https://github.com/alperaltuntas/MOM_interface.git
+          git checkout altuntas/ci
           ./build_examples-ncar.sh --compiler gnu
