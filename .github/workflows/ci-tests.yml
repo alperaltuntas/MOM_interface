@@ -41,5 +41,5 @@ jobs:
       - name: Build standalone mom6
         run: |
           cd components/mom/standalone/build
-          git checkout {{ github.head_ref }}
+          git checkout {{github.ref}}
           ./build_examples-ncar.sh --compiler gnu
