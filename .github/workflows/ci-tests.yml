@@ -42,5 +42,6 @@ jobs:
         run: |
           cd components/mom/standalone/build
           git remote add altuntas https://github.com/alperaltuntas/MOM_interface.git
+          git fetch altuntas
           git checkout altuntas/ci
           ./build_examples-ncar.sh --compiler gnu
